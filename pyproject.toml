@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minime"
+version = "1.0"
+description = "MiniMe - URL Shortener"
+authors = [{name = "hushiooo", email = "hushio@proton.me"}]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "asyncpg==0.29.0",
+    "cachetools==5.5.0",
+    "fastapi==0.115.2",
+    "pydantic==2.9.2",
+    "redis==5.1.1",
+    "uvicorn==0.31.1",
+    "xxhash==3.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx==0.27.2",
+    "pytest==8.3.3",
+    "pytest-asyncio==0.24.0",
+    "ruff==0.6.9",
+]
+
+[tool.setuptools]
+packages = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "F",  # pyflakes
+    "I",  # isort
+]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
